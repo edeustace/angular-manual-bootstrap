@@ -1,0 +1,11 @@
+{
+  "name": "deferred-bootstrap-spike",
+  "version": "0.0.1",
+  "dependencies": {
+    "angular-unstable": "1.2.0rc1",
+    "angular-resource": "latest",
+    "jquery": "latest",
+    "lodash" : "latest",
+    "headjs" : "latest"
+  }
+}

@@ -1,0 +1,44 @@
+<!doctype html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+</head>
+  <body>
+    <div id="root" ng-controller="Root">
+    </div>
+
+    <script type="text/javascript">
+      // hey Angular, we're bootstrapping manually!
+      window.name = "NG_DEFER_BOOTSTRAP!";
+    </script>
+    <script src="bower_components/jquery/jquery.min.js"></script>
+    <script src="bower_components/angular-unstable/angular.js"></script>
+    <script src="bower_components/lodash/dist/lodash.js"></script>
+    <script src="bower_components/headjs/dist/head.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        console.log("load config", document.location);
+
+        var path = document.location.pathname.replace("/", "");
+
+        var configPath = path == "" ? "config.json" : path + "/config.json";
+
+        $.get( configPath, function(data){
+          console.log("data", data);
+
+          var allScriptsAreLoaded = function(){
+            $("#root").html(data.xhtml);
+            angular.module("my-app", data.angular.dependencies);
+            angular.bootstrap(document, ["my-app"]);
+            angular.resumeBootstrap();
+          };
+
+          var args = data.scripts.concat([allScriptsAreLoaded]);
+          console.log(args);
+          head.js.apply(null, args);
+        });
+      });
+    </script>
+</body>
+</html>

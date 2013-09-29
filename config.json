@@ -1,0 +1,9 @@
+{
+  "xhtml" : "<h3>Hello!</h3><hello-world name='Ed'></hello-world>",
+  "angular" : {
+    "dependencies" : [ "my-dependency"]
+  },
+  "scripts" : [
+    "js/my-dependency.js"
+  ]
+}
